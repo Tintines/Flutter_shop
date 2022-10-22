@@ -48,17 +48,51 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  // 热门商品
+  Widget _hotProductListWidget() {
+    // ListView 不能直接嵌套 ListView
+    return Container(
+      height: ScreenAdaper.height(234),
+      padding: EdgeInsets.all(ScreenAdaper.width(20)),
+      child: ListView.builder(
+        itemBuilder: (context, index) => Column(
+          children: [
+            Container(
+              height: ScreenAdaper.height(140),
+              width: ScreenAdaper.width(160),
+              margin: EdgeInsets.only(right: ScreenAdaper.width(20)),
+              child: Image.network(
+                  "https://www.itying.com/images/flutter/hot${index + 1}.jpg",
+                  fit: BoxFit.cover),
+            ),
+            Container(
+              height: ScreenAdaper.height(44),
+              margin: EdgeInsets.only(top: ScreenAdaper.height(10)),
+              child: Text("第$index条"),
+            )
+          ],
+        ),
+        scrollDirection: Axis.horizontal,
+        itemCount: 10,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView(
       children: <Widget>[
         _swiperWidget(),
         const SizedBox(
-          height: 10,
+          height: 12,
         ),
         _titleWidget("猜你喜欢"),
         const SizedBox(
-          height: 10,
+          height: 12,
+        ),
+        _hotProductListWidget(),
+        const SizedBox(
+          height: 12,
         ),
         _titleWidget("热门推荐")
       ],
