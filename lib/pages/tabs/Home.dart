@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
+import '../../services/ScreenAdaper.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -33,17 +33,17 @@ class _HomePageState extends State<HomePage> {
   // 标题
   Widget _titleWidget(value) {
     return Container(
-      height: ScreenUtil().setHeight(34),
-      margin: EdgeInsets.only(left: ScreenUtil().setWidth(20)),
-      padding: EdgeInsets.only(left: ScreenUtil().setHeight(20)),
+      height: ScreenAdaper.height(34),
+      margin: EdgeInsets.only(left: ScreenAdaper.width(20)),
+      padding: EdgeInsets.only(left: ScreenAdaper.height(20)),
       decoration: BoxDecoration(
           border: Border(
               left: BorderSide(
-                  color: Colors.red, width: ScreenUtil().setWidth(10)))),
+                  color: Colors.red, width: ScreenAdaper.width(10)))),
       child: Text(
         value,
         style:
-            TextStyle(color: Colors.black54, fontSize: ScreenUtil().setSp(26)),
+            TextStyle(color: Colors.black54, fontSize: ScreenAdaper.size(26)),
       ),
     );
   }
