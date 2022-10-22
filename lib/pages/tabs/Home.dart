@@ -52,8 +52,8 @@ class _HomePageState extends State<HomePage> {
   Widget _hotProductListWidget() {
     // ListView 不能直接嵌套 ListView
     return Container(
-      height: ScreenAdaper.height(234),
-      padding: EdgeInsets.all(ScreenAdaper.width(20)),
+      height: ScreenAdaper.height(184),
+      padding: EdgeInsets.symmetric(horizontal: ScreenAdaper.width(20)),
       child: ListView.builder(
         itemBuilder: (context, index) => Column(
           children: [
@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
                   fit: BoxFit.cover),
             ),
             Container(
-              height: ScreenAdaper.height(44),
+              // height: ScreenAdaper.height(30),
               margin: EdgeInsets.only(top: ScreenAdaper.height(10)),
               child: Text("第$index条"),
             )
@@ -78,23 +78,88 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  // 热门推荐
+  // LIGHT: 由于ListView和GridView都是可以滚动的组件, 所以嵌套的时候要注意把里面的组件改成不可滚动的组件
+  Widget _recProductItemWidget() {
+    double _itemWidth = (ScreenAdaper.getScreenWidth() - 30) / 2;
+    return Container(
+      padding: const EdgeInsets.all(10),
+      width: _itemWidth,
+      decoration: BoxDecoration(
+          border: Border.all(
+              color: const Color.fromRGBO(233, 233, 233, 0.9), width: 1.0)),
+      child: Column(
+        children: [
+          SizedBox(
+            width: double.infinity, // 撑满父级宽度
+            // 放置服务器返回的图片尺寸不一致
+            child: AspectRatio(
+              aspectRatio: 1 / 1,
+              child: Image.network(
+                  "https://www.itying.com/images/flutter/list1.jpg",
+                  fit: BoxFit.cover),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: ScreenAdaper.height(20)),
+            child: Stack(
+              children: const [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "190.8",
+                    style: TextStyle(color: Colors.red, fontSize: 16),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    "190.8",
+                    style: TextStyle(
+                        color: Colors.black54,
+                        fontSize: 14,
+                        decoration: TextDecoration.lineThrough),
+                  ),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView(
       children: <Widget>[
         _swiperWidget(),
         const SizedBox(
-          height: 12,
+          height: 10,
         ),
         _titleWidget("猜你喜欢"),
         const SizedBox(
-          height: 12,
+          height: 10,
         ),
         _hotProductListWidget(),
         const SizedBox(
-          height: 12,
+          height: 10,
         ),
-        _titleWidget("热门推荐")
+        _titleWidget("热门推荐"),
+        Container(
+          padding: const EdgeInsets.all(10),
+          child: Wrap(
+            runSpacing: 10,
+            spacing: 10,
+            children: [
+              _recProductItemWidget(),
+              _recProductItemWidget(),
+              _recProductItemWidget(),
+              _recProductItemWidget(),
+              _recProductItemWidget(),
+            ],
+          ),
+        )
       ],
     );
   }
