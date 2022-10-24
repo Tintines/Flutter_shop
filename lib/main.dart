@@ -33,7 +33,9 @@ class MyApp extends StatelessWidget {
               ),
               // home: const MyHomePage(title: 'Flutter Demo'),
               // home: const Tabs(),
-              initialRoute: '/',
+
+              // initialRoute: '/',
+              initialRoute: '/productList',
               onGenerateRoute: onGenerateRoute, // 命名路由
               debugShowCheckedModeBanner: false, // 去掉debug图标
             ));

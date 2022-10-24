@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 
 import '../pages/tabs/Tabs.dart';
 import '../pages/Search.dart';
+import '../pages/ProductList.dart';
 
 // 配置路由
 final Map<String, Function> routes = {
   '/': (context) => const Tabs(),
-  '/search': (context) => const SearchPage()
+  '/search': (context) => const SearchPage(),
+  '/productList': (context, {arguments}) => ProductList(
+        arguments: arguments,
+      )
 };
 
 // 固定写法
