@@ -14,7 +14,8 @@ class Tabs extends StatefulWidget {
 
 class _TabsState extends State<Tabs> {
   int _currentIndex = 0;
-  final List _pageList = [
+  late PageController _pageController;
+  final List<Widget> _pageList = [
     const HomePage(),
     const CategoryPage(),
     const CartPage(),
@@ -22,17 +23,29 @@ class _TabsState extends State<Tabs> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(initialPage: _currentIndex);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Flutter_shop'),
       ),
-      body: _pageList[_currentIndex],
+      // LIGHT: 使用AutomaticKeepAliveClientMixin 进行状态保持, 必须使用 PageView 进行包裹
+      body: PageView(
+        controller: _pageController,
+        children: _pageList,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (index) {
           setState(() {
             _currentIndex = index;
+            // 使用控制器跳转
+            _pageController.jumpToPage(index);
           });
         },
         type: BottomNavigationBarType.fixed,

@@ -12,7 +12,8 @@ class CategoryPage extends StatefulWidget {
   State<CategoryPage> createState() => _CategoryPageState();
 }
 
-class _CategoryPageState extends State<CategoryPage> {
+class _CategoryPageState extends State<CategoryPage>
+    with AutomaticKeepAliveClientMixin {
   int _selectIndex = 0;
   List _leftCateList = [];
   List _rightCateList = [];
@@ -141,6 +142,8 @@ class _CategoryPageState extends State<CategoryPage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context); // LIGHT: 使用使用了AutomaticKeepAliveClientMixin方法时, 需要调用
+
     // 左侧宽度
     var leftWidth = ScreenAdaper.getScreenWidth() / 4;
     // 右侧每一项宽度 = (总宽度-左侧宽度-GridView外侧元素左右的Padding-GridView中的间距) / 3
@@ -161,4 +164,7 @@ class _CategoryPageState extends State<CategoryPage> {
       ],
     );
   }
+
+  @override
+  bool get wantKeepAlive => true; // 按需返回true进行页面状态保持
 }
