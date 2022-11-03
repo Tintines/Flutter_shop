@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 
-import '../../services/ScreenAdaper.dart';
+import '../../services/ScreenAdapter.dart';
 import '../../config/Config.dart';
 import '../../model/CateModel.dart';
 
@@ -72,8 +72,8 @@ class _CategoryPageState extends State<CategoryPage>
               },
               child: Container(
                 width: double.infinity,
-                height: ScreenAdaper.height(84),
-                padding: EdgeInsets.only(top: ScreenAdaper.height(28)),
+                height: ScreenAdapter.height(84),
+                padding: EdgeInsets.only(top: ScreenAdapter.height(28)),
                 child: Text("第${_leftCateList[index].title}条",
                     textAlign: TextAlign.center),
                 color: _selectIndex == index
@@ -123,7 +123,7 @@ class _CategoryPageState extends State<CategoryPage>
                         child: Image.network(pic, fit: BoxFit.cover),
                       ),
                       SizedBox(
-                        height: ScreenAdaper.height(28),
+                        height: ScreenAdapter.height(28),
                         child: Text("${_rightCateList[index].title}"),
                       )
                     ]),
@@ -151,14 +151,14 @@ class _CategoryPageState extends State<CategoryPage>
     super.build(context); // LIGHT: 使用使用了AutomaticKeepAliveClientMixin方法时, 需要调用
 
     // 左侧宽度
-    var leftWidth = ScreenAdaper.getScreenWidth() / 4;
+    var leftWidth = ScreenAdapter.getScreenWidth() / 4;
     // 右侧每一项宽度 = (总宽度-左侧宽度-GridView外侧元素左右的Padding-GridView中的间距) / 3
     var rightItemWidth =
-        (ScreenAdaper.getScreenWidth() - leftWidth - 20 - 20) / 3;
+        (ScreenAdapter.getScreenWidth() - leftWidth - 20 - 20) / 3;
     // 获取计算后宽度
-    rightItemWidth = ScreenAdaper.width(rightItemWidth);
+    rightItemWidth = ScreenAdapter.width(rightItemWidth);
     // 获取计算后的高度
-    var rightItemHeight = rightItemWidth + ScreenAdaper.height(20);
+    var rightItemHeight = rightItemWidth + ScreenAdapter.height(20);
 
     return Row(
       children: [

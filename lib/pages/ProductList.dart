@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../services/ScreenAdaper.dart';
+import '../services/ScreenAdapter.dart';
 import '../config/Config.dart';
 import 'package:dio/dio.dart';
 import '../model/ProductModel.dart';
@@ -143,7 +143,7 @@ class _ProductListState extends State<ProductList> {
     if (_productList.isNotEmpty) {
       return Container(
         padding: const EdgeInsets.all(10),
-        margin: EdgeInsets.only(top: ScreenAdaper.height(80)),
+        margin: EdgeInsets.only(top: ScreenAdapter.height(80)),
         child: ListView.builder(
           controller: _scrollController, // 滚动控制器
           itemCount: _productList.length,
@@ -157,16 +157,16 @@ class _ProductListState extends State<ProductList> {
                   children: <Widget>[
                     // 左侧商品图片
                     SizedBox(
-                      width: ScreenAdaper.width(180),
-                      height: ScreenAdaper.height(180),
+                      width: ScreenAdapter.width(180),
+                      height: ScreenAdapter.height(180),
                       child: Image.network(pic, fit: BoxFit.cover),
                     ),
                     // 右侧商品详情
                     Expanded(
                       flex: 1,
                       child: Container(
-                        height:
-                            ScreenAdaper.height(180), // 定高, 用于子元素Colum 设置主轴排列方式
+                        height: ScreenAdapter.height(
+                            180), // 定高, 用于子元素Colum 设置主轴排列方式
                         margin: const EdgeInsets.only(left: 10),
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -177,7 +177,7 @@ class _ProductListState extends State<ProductList> {
                               Row(
                                 children: <Widget>[
                                   Container(
-                                    height: ScreenAdaper.height(36),
+                                    height: ScreenAdapter.height(36),
                                     margin: const EdgeInsets.only(right: 10),
                                     padding:
                                         const EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -191,7 +191,7 @@ class _ProductListState extends State<ProductList> {
                                     child: const Text("4g"),
                                   ),
                                   Container(
-                                    height: ScreenAdaper.height(36),
+                                    height: ScreenAdapter.height(36),
                                     margin: const EdgeInsets.only(right: 10),
                                     padding:
                                         const EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -233,11 +233,11 @@ class _ProductListState extends State<ProductList> {
   Widget _subHeaderWidget() {
     return Positioned(
       top: 0,
-      height: ScreenAdaper.height(80),
-      width: ScreenAdaper.width(750), // LIGHT: 设计稿尺寸
+      height: ScreenAdapter.height(80),
+      width: ScreenAdapter.width(750), // LIGHT: 设计稿尺寸
       child: Container(
-        width: ScreenAdaper.width(750),
-        height: ScreenAdaper.height(80),
+        width: ScreenAdapter.width(750),
+        height: ScreenAdapter.height(80),
         decoration: const BoxDecoration(
             border: Border(
                 bottom: BorderSide(
@@ -251,9 +251,9 @@ class _ProductListState extends State<ProductList> {
                         child: Padding(
                           padding: EdgeInsets.fromLTRB(
                               0,
-                              ScreenAdaper.height(16),
+                              ScreenAdapter.height(16),
                               0,
-                              ScreenAdaper.height(16)),
+                              ScreenAdapter.height(16)),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [

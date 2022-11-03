@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:dio/dio.dart';
-import '../../services/ScreenAdaper.dart';
+import '../../services/ScreenAdapter.dart';
 import '../../config/Config.dart';
 import '../../model/FocusModel.dart';
 import '../../model/ProductModel.dart';
@@ -86,17 +86,17 @@ class _HomePageState extends State<HomePage>
   // 标题
   Widget _titleWidget(value) {
     return Container(
-      height: ScreenAdaper.height(34),
-      margin: EdgeInsets.only(left: ScreenAdaper.width(20)),
-      padding: EdgeInsets.only(left: ScreenAdaper.height(20)),
+      height: ScreenAdapter.height(34),
+      margin: EdgeInsets.only(left: ScreenAdapter.width(20)),
+      padding: EdgeInsets.only(left: ScreenAdapter.height(20)),
       decoration: BoxDecoration(
           border: Border(
               left: BorderSide(
-                  color: Colors.red, width: ScreenAdaper.width(10)))),
+                  color: Colors.red, width: ScreenAdapter.width(10)))),
       child: Text(
         value,
         style:
-            TextStyle(color: Colors.black54, fontSize: ScreenAdaper.size(26)),
+            TextStyle(color: Colors.black54, fontSize: ScreenAdapter.size(26)),
       ),
     );
   }
@@ -106,8 +106,8 @@ class _HomePageState extends State<HomePage>
     if (_hotProductList.isNotEmpty) {
       // ListView 不能直接嵌套 ListView
       return Container(
-        height: ScreenAdaper.height(184),
-        padding: EdgeInsets.symmetric(horizontal: ScreenAdaper.width(20)),
+        height: ScreenAdapter.height(184),
+        padding: EdgeInsets.symmetric(horizontal: ScreenAdapter.width(20)),
         child: ListView.builder(
           itemBuilder: (context, index) {
             String sPic = _hotProductList[index].sPic;
@@ -116,14 +116,14 @@ class _HomePageState extends State<HomePage>
             return Column(
               children: [
                 Container(
-                  height: ScreenAdaper.height(140),
-                  width: ScreenAdaper.width(160),
-                  margin: EdgeInsets.only(right: ScreenAdaper.width(20)),
+                  height: ScreenAdapter.height(140),
+                  width: ScreenAdapter.width(160),
+                  margin: EdgeInsets.only(right: ScreenAdapter.width(20)),
                   child: Image.network(sPic, fit: BoxFit.cover),
                 ),
                 Container(
-                  // height: ScreenAdaper.height(30),
-                  margin: EdgeInsets.only(top: ScreenAdaper.height(10)),
+                  // height: ScreenAdapter.height(30),
+                  margin: EdgeInsets.only(top: ScreenAdapter.height(10)),
                   child: Text(
                     "¥${_hotProductList[index].price}",
                     style: const TextStyle(color: Colors.red),
@@ -144,7 +144,7 @@ class _HomePageState extends State<HomePage>
   // 热门推荐
   // LIGHT: 由于ListView和GridView都是可以滚动的组件, 所以嵌套的时候要注意把里面的组件改成不可滚动的组件
   Widget _recProductListWidget() {
-    double _itemWidth = (ScreenAdaper.getScreenWidth() - 30) / 2;
+    double _itemWidth = (ScreenAdapter.getScreenWidth() - 30) / 2;
     return Container(
       padding: const EdgeInsets.all(10),
       child: Wrap(
@@ -172,7 +172,7 @@ class _HomePageState extends State<HomePage>
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: ScreenAdaper.height(20)),
+                  padding: EdgeInsets.only(top: ScreenAdapter.height(20)),
                   child: Text(
                     "${value.title}",
                     maxLines: 2,
@@ -181,7 +181,7 @@ class _HomePageState extends State<HomePage>
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: ScreenAdaper.height(20)),
+                  padding: EdgeInsets.only(top: ScreenAdapter.height(20)),
                   child: Stack(
                     children: [
                       Align(
