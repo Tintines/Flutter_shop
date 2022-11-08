@@ -57,52 +57,83 @@ class _SearchPageState extends State<SearchPage> {
               style: Theme.of(context).textTheme.subtitle1,
             ),
             const Divider(),
-            Wrap(
-              runSpacing: 10,
-              spacing: 10,
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      color: const Color.fromRGBO(233, 233, 233, 0.9),
-                      borderRadius: BorderRadius.circular(10)),
-                  child: const Text("女装"),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Wrap(
+                runSpacing: 10,
+                spacing: 10,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        color: const Color.fromRGBO(233, 233, 233, 0.9),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: const Text("女装"),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        color: const Color.fromRGBO(233, 233, 233, 0.9),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: const Text("男装"),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        color: const Color.fromRGBO(233, 233, 233, 0.9),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: const Text("笔记本电脑"),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        color: const Color.fromRGBO(233, 233, 233, 0.9),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: const Text("鞋子"),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        color: const Color.fromRGBO(233, 233, 233, 0.9),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: const Text("奥特曼"),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        color: const Color.fromRGBO(233, 233, 233, 0.9),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: const Text("裤子哦噢噢噢噢"),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 10),
+              child: Text(
+                "热搜",
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
+            ),
+            const Divider(),
+            Column(
+              children: const [
+                ListTile(
+                  title: Text("女装"),
                 ),
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      color: const Color.fromRGBO(233, 233, 233, 0.9),
-                      borderRadius: BorderRadius.circular(10)),
-                  child: const Text("男装"),
+                Divider(),
+                ListTile(
+                  title: Text("女装"),
                 ),
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      color: const Color.fromRGBO(233, 233, 233, 0.9),
-                      borderRadius: BorderRadius.circular(10)),
-                  child: const Text("笔记本电脑"),
+                Divider(),
+                ListTile(
+                  title: Text("女装"),
                 ),
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      color: const Color.fromRGBO(233, 233, 233, 0.9),
-                      borderRadius: BorderRadius.circular(10)),
-                  child: const Text("鞋子"),
+                Divider(),
+                ListTile(
+                  title: Text("女装"),
                 ),
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      color: const Color.fromRGBO(233, 233, 233, 0.9),
-                      borderRadius: BorderRadius.circular(10)),
-                  child: const Text("奥特曼"),
-                ),
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      color: const Color.fromRGBO(233, 233, 233, 0.9),
-                      borderRadius: BorderRadius.circular(10)),
-                  child: const Text("裤子哦噢噢噢噢"),
-                ),
+                Divider(),
               ],
             ),
             const SizedBox(
