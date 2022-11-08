@@ -48,7 +48,82 @@ class _SearchPageState extends State<SearchPage> {
           )
         ],
       ),
-      body: const Text('搜索'),
+      body: Container(
+        padding: const EdgeInsets.all(10),
+        child: ListView(
+          children: [
+            Text(
+              "热搜",
+              style: Theme.of(context).textTheme.subtitle1,
+            ),
+            const Divider(),
+            Wrap(
+              runSpacing: 10,
+              spacing: 10,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      color: const Color.fromRGBO(233, 233, 233, 0.9),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: const Text("女装"),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      color: const Color.fromRGBO(233, 233, 233, 0.9),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: const Text("男装"),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      color: const Color.fromRGBO(233, 233, 233, 0.9),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: const Text("笔记本电脑"),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      color: const Color.fromRGBO(233, 233, 233, 0.9),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: const Text("鞋子"),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      color: const Color.fromRGBO(233, 233, 233, 0.9),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: const Text("奥特曼"),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      color: const Color.fromRGBO(233, 233, 233, 0.9),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: const Text("裤子哦噢噢噢噢"),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 100,
+            ),
+            InkWell(
+              onTap: () {},
+              child: Container(
+                width: ScreenAdapter.width(400),
+                height: ScreenAdapter.height(64),
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black45, width: 1)),
+                child: Row(
+                  children: const [Icon(Icons.delete), Text("清空历史记录")],
+                  mainAxisAlignment: MainAxisAlignment.center,
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
