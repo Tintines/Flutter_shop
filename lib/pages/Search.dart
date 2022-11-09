@@ -9,6 +9,8 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+  String? _keywords;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,6 +24,9 @@ class _SearchPageState extends State<SearchPage> {
                     borderSide: BorderSide.none),
                 contentPadding:
                     const EdgeInsets.only(left: 20, right: 20)), // 垂直居中
+            onChanged: (value) {
+              _keywords = value;
+            },
           ),
           height: ScreenAdapter.height(60),
           decoration: BoxDecoration(
@@ -44,7 +49,11 @@ class _SearchPageState extends State<SearchPage> {
                 ],
               ),
             ),
-            onTap: () {},
+            onTap: () {
+              // 不保留当前路由栈记录
+              Navigator.pushReplacementNamed(context, '/productList',
+                  arguments: {"keywords": _keywords});
+            },
           )
         ],
       ),

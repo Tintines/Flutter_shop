@@ -40,12 +40,28 @@ class _ProductListState extends State<ProductList> {
   // 二级导航选中判断
   int _selectHeaderId = 1;
 
+  // 获取搜索框的控制器
+  final TextEditingController _initKeywordsController = TextEditingController();
+
+  // 分类id    如果指定类型可空时 String? _cid;
+  String? _cid;
+  // 搜索关键词
+  String? _keywords;
+
   @override
   void initState() {
     super.initState();
+
+    _cid = widget.arguments?["cid"];
+    _keywords = widget.arguments?["keywords"];
+    // 给搜索框赋值
+    if (_keywords != null) {
+      _initKeywordsController.text = _keywords!; // 此时一定有值
+    }
+
     _getProductListData();
 
-    // 上拉监听
+    // 上拉监听 (通过监听滚动条滚动事件)
     _scrollController.addListener(() {
       // _scrollController.position.pixels           获取滚动条滚动的高度
       // _scrollController.position.maxScrollExtent  获取页面的高度
@@ -65,12 +81,27 @@ class _ProductListState extends State<ProductList> {
       flag = false;
     });
     // Map 数据类型 取值 map["xxx"]
-    var api =
-        '${Config.domain}api/plist?cid=${widget.arguments!["cid"]}&page=$_page&sort=$_sort&pageSize=$_pageSize';
+    final String api;
+    if (_keywords == null) {
+      api =
+          '${Config.domain}api/plist?cid=$_cid&page=$_page&sort=$_sort&pageSize=$_pageSize';
+    } else {
+      api =
+          '${Config.domain}api/plist?search=$_keywords&page=$_page&sort=$_sort&pageSize=$_pageSize';
+    }
     print(api);
     var result = await Dio().get(api);
     var productList = ProductModel.fromJson(result.data);
     print(productList.result.length);
+
+    // 判断是否有搜索数据, 且当请求第一页时就进行判断!!!(当不是第一页,如第二页返回时数据为空时会导致误判)
+    if (productList.result.isEmpty && _page == 1) {
+      _hasMore = false;
+    } else {
+      _hasMore = true;
+    }
+
+    // 判断是否为最后一页
     if (productList.result.length < _pageSize) {
       setState(() {
         _productList.addAll(productList.result); // 追加数据(上拉加载)
@@ -116,7 +147,25 @@ class _ProductListState extends State<ProductList> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: const Text("商品列表"),
+        title: Container(
+          child: TextField(
+            autofocus: true,
+            decoration: InputDecoration(
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: BorderSide.none),
+                contentPadding:
+                    const EdgeInsets.only(left: 20, right: 20)), // 垂直居中
+            onChanged: (value) {
+              _keywords = value;
+            },
+          ),
+          height: ScreenAdapter.height(60),
+          decoration: BoxDecoration(
+            color: const Color.fromRGBO(233, 233, 233, 0.8),
+            borderRadius: BorderRadius.circular(30),
+          ),
+        ),
         // 导航栏左侧菜单
         leading: IconButton(
           // 注意：新版本的Flutter中加入Drawer组件会导致默认的返回按钮失效，所以需要手动加上返回按钮
@@ -126,7 +175,26 @@ class _ProductListState extends State<ProductList> {
           },
         ),
         // 导航栏右侧菜单按钮  返回空Widget(隐藏自动生成的menu菜单按钮)
-        actions: const <Widget>[Text("")],
+        actions: <Widget>[
+          InkWell(
+            child: SizedBox(
+              height: ScreenAdapter.height(60),
+              width: ScreenAdapter.width(100),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const <Widget>[
+                  Text(
+                    "搜索",
+                    style: TextStyle(color: Colors.black87),
+                  )
+                ],
+              ),
+            ),
+            onTap: () {
+              _subHeaderChange(1);
+            },
+          )
+        ],
       ),
       endDrawer: const Drawer(child: Text("实现是啊选功能")),
       body: Stack(
